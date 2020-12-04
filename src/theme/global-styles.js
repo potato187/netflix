@@ -1,4 +1,4 @@
-const { createGlobalStyle } = require("styled-components");
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   *::after, *::before, * {
@@ -15,6 +15,13 @@ const GlobalStyles = createGlobalStyle`
     color: #333;
     font-size: 16px;
   }
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  
 `;
 
 export default GlobalStyles;
