@@ -21,6 +21,13 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     font-family: inherit;
   }
+
+  button, input{
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
   
 `;
 
