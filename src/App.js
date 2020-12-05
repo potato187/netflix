@@ -1,11 +1,11 @@
-import FooterContainer from "containers/footer";
-import JumbotronContainer from "containers/jumbotron";
+import { FooterContainer, JumbotronContainer, FaqsContainer } from "containers";
 import React from "react";
 
 function App() {
   return (
     <>
       <JumbotronContainer />
+      <FaqsContainer />
       <FooterContainer />
     </>
   );
