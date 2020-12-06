@@ -11,8 +11,8 @@ import {
 
 export default function Jumbotron({ direction, children, ...restProps }) {
   return (
-    <Item direction={direction} {...restProps}>
-      <Wrapper> {children}</Wrapper>
+    <Item {...restProps}>
+      <Wrapper direction={direction}> {children}</Wrapper>
     </Item>
   );
 }
