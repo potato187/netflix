@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
@@ -56,19 +56,58 @@ export const Header = styled.div`
     font-size: 16px;
   }
 `;
+
 export const Body = styled.div`
-  max-height: 1200px;
-  transition: max-height 0.25s cubic-bezier(0.5, 0, 01 1);
+  max-height: 0px;
+  visibility: hidden;
+  opacity: 0;
+  padding: 0 2.2em 0 1.2em;
+  transition: all 0.5s cubic-bezier(0.5, 0, 0.1, 1);
   font-size: 26px;
   font-weight: normal;
   line-height: normal;
   background-color: #303030;
-  padding: 0.8em 2.2em 0.8em 1.2em;
+
   white-space: pre-wrap;
   user-select: none;
+
+  ${({ toggle }) =>
+    toggle &&
+    css`
+      max-height: 1200px;
+      visibility: visible;
+      opacity: 1;
+      padding: 0.8em 2.2em 0.8em 1.2em;
+    `}
 
   @media (max-width: 600px) {
     font-size: 16px;
     line-height: 22px;
+  }
+`;
+
+export const Toggle = styled.div`
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  position: relative;
+  transform: ${({ toggle }) => (toggle ? "rotate(45deg)" : "rotate(0deg)")};
+  transition: transform 0.5s;
+  ::after,
+  ::before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    border-radius: 3px;
+    width: 100%;
+    height: 5px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  ::before {
+    transform: translateY(-50%) rotate(-90deg);
   }
 `;

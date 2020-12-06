@@ -6,6 +6,7 @@ import {
   Inner,
   Item,
   Title,
+  Toggle,
 } from "./styles/accordion";
 
 const ToggleContext = createContext();
@@ -41,11 +42,7 @@ Accordion.Header = function AccordionHeader({ children, ...resProps }) {
       {...resProps}
     >
       {children}
-      {toggleShow ? (
-        <img src="/images/icons/close-slim.png" alt="Close" />
-      ) : (
-        <img src="/images/icons/add.png" alt="Open" />
-      )}
+      <Toggle toggle={toggleShow} />
     </Header>
   );
 };
@@ -53,5 +50,9 @@ Accordion.Header = function AccordionHeader({ children, ...resProps }) {
 Accordion.Body = function AccordionBody({ children, ...resProps }) {
   const { toggleShow } = useContext(ToggleContext);
 
-  return toggleShow ? <Body {...resProps}>{children}</Body> : null;
+  return (
+    <Body toggle={toggleShow} {...resProps}>
+      {children}
+    </Body>
+  );
 };

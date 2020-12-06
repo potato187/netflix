@@ -19,7 +19,7 @@ export default function FaqsContainer() {
         <OptForm.Group>
           <OptForm.Input placeholder="Email address" />
           <OptForm.Break />
-          <OptForm.Button>Try it now</OptForm.Button>
+          <OptForm.Button>GET STARTED</OptForm.Button>
         </OptForm.Group>
       </OptForm>
     </Accordion>

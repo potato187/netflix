@@ -27,32 +27,38 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  display: inline-block;
   flex: 1 0 auto;
-  height: 70px;
+  display: flex;
+  align-items: center;
+  min-height: 70px;
   background-color: #e50914;
-  color: #fff;
-  text-transform: uppercase;
   padding: 0 32px;
+  color: #fff;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
   font-size: 26px;
+  span {
+    display: inline-block;
+    margin-left: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    padding: 5px;
+    transform: rotate(-45deg);
+  }
+
   transition: background-color 0.3s;
   &:hover {
     background-color: #f40612;
   }
-  img {
-    margin-left: 10px;
-    filter: brightness(0) invert(1);
-    width: 24px;
-
-    @media (max-width: 1000px) {
-      width: 16px;
-    }
-  }
 
   @media (max-width: 1000px) {
-    font-size: 16px;
     margin-top: 20px;
-    font-weight: bold;
+    font-size: 18px;
+    min-height: 50px;
+    span {
+      margin-left: 5px;
+      padding: 3px;
+    }
   }
 `;
 
@@ -74,8 +80,8 @@ export const Break = styled.div`
 
 export const Group = styled.div`
   display: flex;
-  justify-content: center;
   @media (max-width: 1000px) {
     flex-direction: column;
+    align-items: center;
   }
 `;
