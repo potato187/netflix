@@ -10,8 +10,7 @@ export const Background = styled.div`
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
     ),
-    url(${({ src }) =>
-        src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"})
+    url(${({ src }) => src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"})
       top left/cover no-repeat;
 `;
 
