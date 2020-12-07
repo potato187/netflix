@@ -2,15 +2,9 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   height: 100%;
   margin-top: 20px;
-
-  @media (max-width: 1000px) {
-    flex-direction: column;
-    align-items: center;
-  }
 `;
 
 export const Input = styled.input`
@@ -32,7 +26,7 @@ export const Button = styled.button`
   align-items: center;
   min-height: 70px;
   background-color: #e50914;
-  padding: 0 32px;
+  padding: 0 27px;
   color: #fff;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -80,6 +74,9 @@ export const Break = styled.div`
 
 export const Group = styled.div`
   display: flex;
+  max-width: 700px;
+  margin: 0 auto;
+
   @media (max-width: 1000px) {
     flex-direction: column;
     align-items: center;
