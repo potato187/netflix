@@ -6,10 +6,15 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyles from "theme/global-styles";
 import Provider from "theme/provider";
 
+import { firebase } from "lib/firebase.prod";
+import { FirebaseContext } from "context/firebase";
+
 render(
-  <ThemeProvider theme={Provider}>
-    <GlobalStyles />
-    <App />
-  </ThemeProvider>,
+  <FirebaseContext.Provider value={{ firebase }}>
+    <ThemeProvider theme={Provider}>
+      <GlobalStyles />
+      <App />
+    </ThemeProvider>
+  </FirebaseContext.Provider>,
   document.getElementById("root")
 );

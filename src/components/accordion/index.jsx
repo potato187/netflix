@@ -11,35 +11,35 @@ import {
 
 const ToggleContext = createContext();
 
-export default function Accordion({ children, ...resProps }) {
+export default function Accordion({ children, ...restProps }) {
   return (
-    <Container {...resProps}>
+    <Container {...restProps}>
       <Inner>{children}</Inner>
     </Container>
   );
 }
 
-Accordion.Title = function AccordionTitle({ children, ...resProps }) {
-  return <Title {...resProps}>{children}</Title>;
+Accordion.Title = function AccordionTitle({ children, ...restProps }) {
+  return <Title {...restProps}>{children}</Title>;
 };
 
-Accordion.Item = function AccordionItem({ children, ...resProps }) {
+Accordion.Item = function AccordionItem({ children, ...restProps }) {
   const [toggleShow, setToggleShow] = useState(false);
 
   return (
     <ToggleContext.Provider value={{ toggleShow, setToggleShow }}>
-      <Item {...resProps}>{children}</Item>
+      <Item {...restProps}>{children}</Item>
     </ToggleContext.Provider>
   );
 };
 
-Accordion.Header = function AccordionHeader({ children, ...resProps }) {
+Accordion.Header = function AccordionHeader({ children, ...restProps }) {
   const { toggleShow, setToggleShow } = useContext(ToggleContext);
 
   return (
     <Header
       onClick={() => setToggleShow((toggleShow) => !toggleShow)}
-      {...resProps}
+      {...restProps}
     >
       {children}
       <Toggle toggle={toggleShow} />
@@ -47,11 +47,11 @@ Accordion.Header = function AccordionHeader({ children, ...resProps }) {
   );
 };
 
-Accordion.Body = function AccordionBody({ children, ...resProps }) {
+Accordion.Body = function AccordionBody({ children, ...restProps }) {
   const { toggleShow } = useContext(ToggleContext);
 
   return (
-    <Body toggle={toggleShow} {...resProps}>
+    <Body toggle={toggleShow} {...restProps}>
       {children}
     </Body>
   );

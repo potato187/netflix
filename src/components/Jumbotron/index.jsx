@@ -33,8 +33,8 @@ Jumbotron.SubTitle = function JumbotronSubTitle({ children, ...restProps }) {
   return <SubTitle {...restProps}>{children}</SubTitle>;
 };
 
-Jumbotron.Image = function JumbotronImage({ ...resProps }) {
-  return <Image {...resProps} />;
+Jumbotron.Image = function JumbotronImage({ ...restProps }) {
+  return <Image {...restProps} />;
 };
 
 Jumbotron.defaultProps = {

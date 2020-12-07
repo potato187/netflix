@@ -8,31 +8,31 @@ import {
   Text,
 } from "./styles/opt-form";
 
-export default function OptForm({ children, ...resProps }) {
-  return <Container {...resProps}>{children}</Container>;
+export default function OptForm({ children, ...restProps }) {
+  return <Container {...restProps}>{children}</Container>;
 }
 
-OptForm.Input = function OptFormInput({ ...resProps }) {
-  return <Input {...resProps} />;
+OptForm.Input = function OptFormInput({ ...restProps }) {
+  return <Input {...restProps} />;
 };
 
-OptForm.Button = function OptFormButton({ children, ...resProps }) {
+OptForm.Button = function OptFormButton({ children, ...restProps }) {
   return (
-    <Button {...resProps}>
+    <Button {...restProps}>
       {children}
       <span />
     </Button>
   );
 };
 
-OptForm.Text = function OptFormText({ children, ...resProps }) {
-  return <Text {...resProps}>{children}</Text>;
+OptForm.Text = function OptFormText({ children, ...restProps }) {
+  return <Text {...restProps}>{children}</Text>;
 };
 
 OptForm.Break = function OptFormBreak() {
   return <Break />;
 };
 
-OptForm.Group = function OptFormGroup({ children, ...resProps }) {
-  return <Group {...resProps}>{children} </Group>;
+OptForm.Group = function OptFormGroup({ children, ...restProps }) {
+  return <Group {...restProps}>{children} </Group>;
 };

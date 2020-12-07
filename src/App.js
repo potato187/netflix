@@ -3,9 +3,10 @@ import { Browse, Home, SignIn, SignUp } from "pages";
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
+
 function App() {
   return (
-    <BrowserRouter> 
+    <BrowserRouter>
       <Redirect from="/" to="/home" />
       <Switch>
         <Route exact path={ROUTES.HOME} component={Home} />
