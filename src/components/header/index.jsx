@@ -2,8 +2,14 @@ import React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Background, ButtonLink, Frame, Logo } from "./styles/header";
 
-export default function Header({ bg, children, ...restProps }) {
-  return bg ? <Background {...restProps}>{children}</Background> : children;
+export default function Header({ basic = false, bg, children, ...restProps }) {
+  return bg ? (
+    <Background basic={basic} {...restProps}>
+      {children}
+    </Background>
+  ) : (
+    children
+  );
 }
 
 Header.Frame = function HeaderFrame({ children, ...restProps }) {

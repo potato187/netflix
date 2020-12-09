@@ -20,12 +20,16 @@ const GlobalStyles = createGlobalStyle`
     cursor: pointer;
     text-decoration: none;
     font-family: inherit;
+
+  }
+  
+  button {
+    cursor: pointer;
   }
 
   button, input{
     border: 0;
     outline: 0;
-    cursor: pointer;
     font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   

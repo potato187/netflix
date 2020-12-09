@@ -3,11 +3,10 @@ import { Browse, Home, SignIn, SignUp } from "pages";
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-
 function App() {
   return (
     <BrowserRouter>
-      <Redirect from="/" to="/home" />
+      <Redirect from="/" to="/sign-in" />
       <Switch>
         <Route exact path={ROUTES.HOME} component={Home} />
         <Route exact path={ROUTES.BROWSE} component={Browse} />
