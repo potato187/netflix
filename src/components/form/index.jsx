@@ -1,5 +1,6 @@
+import { Button } from "components/opt-form/styles/opt-form";
 import React, { createContext, useContext, useState } from "react";
-import { validEmail } from "utils";
+
 import {
   Base,
   CheckBox,
@@ -11,7 +12,7 @@ import {
   Label,
   LabelRemember,
   Link,
-  Show,
+  ButtonShowPassWord,
   Submit,
   Text,
   TextSmall,
@@ -58,13 +59,11 @@ Form.Group = function FormGroup({ children, ...restProps }) {
 
 Form.Wrapper = function FormWrapper({ children, ...restProps }) {
   const [focus, setFocus] = useState(false);
-  const [warning, setWarning] = useState(false);
   const [error, setError] = useState("");
 
   const store = {
-    FOCUS: [focus, setFocus],
-    ERROR: [error, setError],
-    WARN: [warning, setWarning],
+    Focus: [focus, setFocus],
+    Error: [error, setError],
   };
 
   return (
@@ -74,27 +73,102 @@ Form.Wrapper = function FormWrapper({ children, ...restProps }) {
   );
 };
 
-Form.Input = function FormInput({ ...restProps }) {
-  const { FOCUS, ERROR, WARN } = useContext(StateContext);
-  const [focus, setFocus] = FOCUS;
-  const [error, setError] = ERROR;
-  const [warning, setWarning] = WARN;
+Form.InputPassWord = function FormInputPassWord({
+  password = "",
+  setPassword = null,
+  handleOnChange = null,
+  ...restProps
+}) {
+  const { Focus, Error } = useContext(StateContext);
+  const [focus, setFocus] = Focus;
+  const [error, setError] = Error;
+  const [typeInput, setTypeInput] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   const handleOnBlur = (event) => {
-    const { value, type } = event.target;
-
-    if (value.length < 6) {
-      if (type === "email") {
-        setError("Please enter a valid email.");
-      }
-      if (type === "password" || type === "text") {
-        setError("Your password must contain between 6 and 60 characters.");
-      }
-      setWarning(true);
-    } else {
+    const { value } = event.target;
+    const len = value.length;
+    if (len >= 6) {
       setError("");
     }
 
+    if (len >= 0 && len <= 5) {
+      setError("Your password must be contained about 6 to 60 characters.");
+    }
+
+    return len > 0 ? setFocus(true) : setFocus(false);
+  };
+
+  const handleOnFocus = () => {
+    setFocus(true);
+  };
+
+  const handleOnKeyDown = (event) => {
+    const { value } = event.target;
+    if (value.length >= 1) {
+      setChecked(true);
+    }
+    if (value.length > 5) {
+      setError("");
+    }
+  };
+
+  const handleOnClick = (event) => {
+    event.preventDefault();
+    setTypeInput(!typeInput);
+  };
+
+  const handlePassword = (event) => {
+    if (handleOnChange) {
+      handleOnChange(event, setPassword);
+    }
+  };
+
+  return (
+    <>
+      <Input
+        type={typeInput ? "password" : "text"}
+        id="password"
+        name="password"
+        focus={focus}
+        onBlur={(event) => handleOnBlur(event)}
+        onFocus={handleOnFocus}
+        onKeyDown={(event) => handleOnKeyDown(event)}
+        value={password}
+        onChange={handlePassword}
+        {...restProps}
+      />
+
+      <Label htmlFor="password">Password</Label>
+      <ButtonShowPassWord
+        show={checked}
+        typeInput="button"
+        onClick={(event) => handleOnClick(event)}
+      >
+        {typeInput ? "Show" : "Hide"}
+      </ButtonShowPassWord>
+    </>
+  );
+};
+
+Form.Input = function FormInput({ type, ...restProps }) {
+  const { Focus, Error, Warn } = useContext(StateContext);
+  const [focus, setFocus] = Focus;
+  const [error, setError] = Error;
+
+  const handleOnBlur = (event) => {
+    const { value, name } = event.target;
+
+    if (value.length >= 0 && value.length <= 5) {
+      if (name === "email") {
+        setError("Please enter a valid email.");
+      }
+      if (name === "firstName") {
+        setError("Your name must contain between 4 and 20 characters.");
+      }
+    } else {
+      setError("");
+    }
     return value.length > 0 ? setFocus(true) : setFocus(false);
   };
 
@@ -106,7 +180,6 @@ Form.Input = function FormInput({ ...restProps }) {
     const { value } = event.target;
     if (value.length > 5) {
       setError("");
-      setWarning(false);
     }
   };
 
@@ -122,14 +195,10 @@ Form.Input = function FormInput({ ...restProps }) {
 };
 
 Form.TextWarning = function FormTextWarning({ children, ...restProps }) {
-  const { ERROR, WARN } = useContext(StateContext);
-  const [error, setError] = ERROR;
+  const { Error, Warn } = useContext(StateContext);
+  const [error, setError] = Error;
 
-  return (
-    <TextWarning warning={!WARN.warning} {...restProps}>
-      {error}
-    </TextWarning>
-  );
+  return <TextWarning {...restProps}>{error}</TextWarning>;
 };
 
 Form.Link = function FormLink({ to, children, ...restProps }) {
@@ -150,10 +219,6 @@ Form.Label = function FormLabel({ children, htmlFor, ...restProps }) {
 
 Form.Submit = function FormSubmit({ children, ...restProps }) {
   return <Submit {...restProps}>{children}</Submit>;
-};
-
-Form.Show = function FormShow({ children, ...restProps }) {
-  return <Show {...restProps}>{children}</Show>;
 };
 
 Form.GroupHelp = function FormGroupHelp({ children, ...restProps }) {

@@ -106,13 +106,6 @@ export const Input = styled.input`
   position: relative;
   z-index: 2;
 
-  /*   ${({ warning }) =>
-    warning &&
-    css`
-      border-bottom: 3px solid #e87c03;
-    `}
- */
-
   ${({ focus }) =>
     focus &&
     css`
@@ -135,7 +128,7 @@ export const Submit = styled.button`
   margin-bottom: 10px;
 `;
 
-export const Show = styled.button`
+export const ButtonShowPassWord = styled.button`
   visibility: hidden;
   font-size: 16px;
   opacity: 0;
@@ -160,8 +153,6 @@ export const Show = styled.button`
 export const TextWarning = styled.div`
   display: block;
   font-size: 13px;
-  visibility: ${({ warning }) => (warning ? "visible" : "hidden")};
-  opacity: ${({ warning }) => (warning ? "1" : "0")};
   color: #e87c03;
   margin-top: 10px;
   transition: all 0.3s;

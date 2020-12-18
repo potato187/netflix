@@ -1,9 +1,13 @@
+import { FooterContainer, HeaderContainer, SignUpForm } from "containers";
 import React from "react";
 
 function SignUp() {
   return (
     <>
-      <h1>Well come to sign up</h1>
+      <HeaderContainer>
+        <SignUpForm />
+      </HeaderContainer>
+      <FooterContainer />
     </>
   );
 }
